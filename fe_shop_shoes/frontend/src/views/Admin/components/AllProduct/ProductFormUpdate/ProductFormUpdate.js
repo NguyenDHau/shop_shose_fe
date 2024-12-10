@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Grid, TextField, Typography } from '@mui/material';
+// import { Button, Grid, TextField, Typography } from '@mui/material';
 import ProductDetailPopup from '../../popup/ProductDetailPopup';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Button, Grid, TextField, Typography, Dialog, DialogTitle, DialogActions, DialogContent } from '@mui/material';
 
 
 function ProductFormUpdate() {
@@ -26,6 +27,10 @@ function ProductFormUpdate() {
     const { id } = useParams();
     const [branchId, setBranchId] = useState('');
     const [branches, setBranches] = useState([]);
+    // Popup delete confirmation
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [deleteIndex, setDeleteIndex] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -124,7 +129,7 @@ function ProductFormUpdate() {
 
             const response = await axios.post('http://localhost:8080/api/products', newProduct, config);
             console.log('Product created successfully:', response.data);
-            alert('Product created successfully!');
+            alert('Product updated successfully!');
         } catch (error) {
             console.error('Error creating product:', error);
             alert('Failed to create product. Please try again.');
@@ -209,6 +214,50 @@ function ProductFormUpdate() {
         fetchData();
     }, [id]); // Chỉ chạy một lần khi component được mount
 
+    const handleOpenDeleteDialog = (index) => {
+        setDeleteIndex(index);
+        setOpenDeleteDialog(true);
+    };
+
+    const handleCloseDeleteDialog = () => {
+        setOpenDeleteDialog(false);
+        setDeleteIndex(null);
+    };
+
+    const handleDeleteProduct = async () => {
+        try {
+            const accessToken = localStorage.getItem('accessToken');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json',
+                },
+            };
+
+            // Gọi API để xóa sản phẩm
+            const response = await axios.delete(`http://localhost:8080/api/products/${id}`, config);
+
+            if (response.status === 204) {
+                // Xóa thành công, thông báo cho người dùng
+                alert('Product deleted successfully');
+                
+                // Đóng popup nếu cần
+                handleCloseDeleteDialog();
+
+                // Chuyển hướng về trang AllProducts sau khi xóa thành công
+                navigate('/admin/products/all');  // Điều hướng về trang danh sách sản phẩm
+            } else {
+                console.error('Failed to delete product');
+            }
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            alert('Failed to delete product. Please try again.');
+        }
+    };
+    
+
+    
+
 
     return (
         <div>
@@ -220,6 +269,7 @@ function ProductFormUpdate() {
                         fullWidth
                         value={productName}
                         onChange={(e) => setProductName(e.target.value)}
+                        sx={{ mt: 50 }}
                     />
                 </Grid>
                 <Grid item xs={6}>
@@ -228,6 +278,7 @@ function ProductFormUpdate() {
                         fullWidth
                         value={productCode}
                         onChange={(e) => setProductCode(e.target.value)}
+                        sx={{ mt: 50 }}
                     />
                 </Grid>
                 <Grid item xs={6}>
@@ -336,6 +387,34 @@ function ProductFormUpdate() {
             >
                 Save Product
             </Button>
+
+            {/* Nút Xóa */}
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleOpenDeleteDialog}  // Mở popup xóa
+                style={{ marginTop: '20px' }}
+            >
+                Delete Product
+            </Button>
+
+            {/* Delete Confirmation Dialog */}
+            <Dialog open={openDeleteDialog} onClose={handleCloseDeleteDialog}>
+                <DialogTitle>Xác nhận xóa</DialogTitle>
+                <DialogContent>
+                    <Typography>
+                        Bạn có chắc chắn muốn xóa sản phẩm này không?
+                    </Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDeleteDialog} color="primary">
+                        Hủy
+                    </Button>
+                    <Button onClick={handleDeleteProduct} color="secondary">
+                        Xóa
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 }

@@ -22,14 +22,13 @@ const bannerSlide = (
       <Grid item xs={12} sm={5}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           <Typography variant="h3" fontWeight={700} sx={{ height: '100%', width: '100%' }}>
-            50% Off For Your First Shopping
+            Chào mừng đến với Nô Shoes
           </Typography>
           <Typography sx={{ color: 'secondary.dark', fontSize: '0.875rem' }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut
-            convalliss.
+            Chúng tôi có tất cả những thứ bạn cần. Với Nô Shoes, bạn sẽ có trải nghiệm tuyệt với nhất. 
           </Typography>
           <Button variant="contained" color="primary" sx={{ minWidth: 64, width: 154, height: 44 }}>
-            Shop Now
+            Đi chợ thôi nào!
           </Button>
         </Box>
       </Grid>
@@ -38,8 +37,8 @@ const bannerSlide = (
         <Box
           alt="Nike black"
           component="img"
-          src="https://bazaar.ui-lib.com/assets/images/products/nike-black.png"
-          sx={{ maxWidth: 530, width: '100%', maxheight: 400, height: '100%' }}
+          src="http://res.cloudinary.com/ddbtn5izu/image/upload/v1732703110/ujueyez4sst3sus1rbq8.webp"
+          sx={{ maxWidth: 530, width: '100%', maxheight: 400, height: '100%', ml: 2 }}
         />
       </Grid>
     </Grid>

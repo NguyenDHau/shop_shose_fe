@@ -5,10 +5,8 @@ import {
   NewArrivals,
   TopCategories,
   TopRatings,
-  // FeaturedBrands,
   ProductList,
   Delivery,
-  FlashDeals,
   ScrollToTopButton,
 } from './components'
 
@@ -17,7 +15,6 @@ const Home = () => {
     <>
       <Carousel />
       <PageLayout container isAsync={false}>
-        <FlashDeals />
         <TopCategories />
         <Grid container spacing={4} sx={{ my: 1 }}>
           <Grid item md={12} xs={12}>

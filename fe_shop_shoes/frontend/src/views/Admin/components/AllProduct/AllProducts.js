@@ -47,9 +47,6 @@ const AllProducts = () => {
   return (
     <Box sx={{ p: 3, marginTop: '1000px', overflowY: 'scroll' }}>
       <Typography variant="h4" gutterBottom>Danh Sách Sản Phẩm</Typography>
-      <Button variant="contained" color="primary" onClick={handleAddProductClick} sx={{ mb: 3 }}>
-        Thêm Sản Phẩm
-      </Button>
 
       {showProductForm ? (
         <ProductForm onClose={handleCloseProductForm} /> // Hiển thị form thêm sản phẩm

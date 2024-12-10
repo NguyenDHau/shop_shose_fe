@@ -5,8 +5,8 @@ import { AppDownloadButton } from './components'
 const Footer = () => {
   const footerData = [
     {
-      columnTitle: 'About us',
-      columnLinks: ['Careers', 'Our Stores', 'Our Cares', 'Terms & Conditions', 'Privacy Policy'],
+      columnTitle: 'Về chúng tôi',
+      columnLinks: ['Cơ hội nghề nghiệp', 'Cửa hàng của chúng tôi', 'Chăm sóc khách hàng', 'Điều khoản & Điều kiện', 'Chính sách bảo mật'],
       sizing: {
         xs: 12,
         sm: 6,
@@ -16,13 +16,13 @@ const Footer = () => {
       key: 1,
     },
     {
-      columnTitle: 'Customer Care',
+      columnTitle: 'Chăm sóc khách hàng',
       columnLinks: [
-        'Help Center',
-        'How To Buy',
-        'Track Your Order',
-        'Corporate & Bulk Purchasing',
-        'Returns & Refunds',
+        'Trung tâm trợ giúp',
+        'Hướng dẫn mua hàng',
+        'Theo dõi đơn hàng',
+        'Mua sỉ & Mua số lượng lớn',
+        'Chính sách đổi trả & Hoàn tiền',
       ],
       sizing: {
         xs: 12,
@@ -33,11 +33,11 @@ const Footer = () => {
       key: 2,
     },
     {
-      columnTitle: 'Contact Us',
+      columnTitle: 'Liên hệ với chúng tôi',
       columnLinks: [
-        '178 Trần Đại Nghia, P. Hoà Hải, Q. Ngu Hành Sơn, TP. Đà Năng',
-        'Email: ndhau261102@gmail.com@gmail.com',
-        'Phone: 0906446132',
+        '178 Trần Đại Nghĩa, P. Hoà Hải, Q. Ngũ Hành Sơn, TP. Đà Nẵng',
+        'Email: ndhau261102@gmail.com',
+        'Điện thoại: 0906446132',
       ],
       sizing: {
         xs: 12,
@@ -47,7 +47,8 @@ const Footer = () => {
       },
       key: 3,
     },
-  ]
+  ];
+  
 
   return (
     <Box component="footer" sx={{ bgcolor: '#222935', mt: 10 }}>
@@ -57,8 +58,7 @@ const Footer = () => {
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
               <Box component="img" src="/images/logo.svg" alt="logo" sx={{ height: 50, mb: 2 }} />
               <Typography variant="subtitle" sx={{ color: (theme) => theme.palette.grey[500], mb: 2, fontSize: 15 }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor libero id et, in gravida. Sit diam duis
-                mauris nulla cursus. Erat et lectus vel ut sollicitudin elit at amet.
+              Nô Shoes - Mang đến phong cách thời thượng và chất lượng vượt trội. Chúng tôi tự hào cung cấp đa dạng các mẫu giày từ thể thao, công sở đến thời trang cao cấp, phù hợp với mọi phong cách và nhu cầu của bạn. Đồng hành cùng bạn trên mọi bước đi!
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: { xs: 'column', sm: 'row' } }}>
                 <AppDownloadButton />

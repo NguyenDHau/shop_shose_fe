@@ -54,34 +54,6 @@ function ProductForm() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    // const handleSave = async (data) => {
-    //     try {
-    //         const formData = new FormData();
-    //         formData.append('file', data.image);
-    //         formData.append('upload_preset', 'shoes_preset');
-
-    //         const response = await axios.post(
-    //             'https://api.cloudinary.com/v1_1/ddbtn5izu/image/upload',
-    //             formData
-    //         );
-    //         const imageUrl = response.data.secure_url;
-    //         const public_id = response.data.public_id;
-    //         const signature = response.data.signature;
-
-    //         const productDetail = {
-    //             ...data,
-    //             fileUrl: imageUrl,
-    //             public_id,
-    //             signature,
-    //         };
-
-    //         setProductDetails((prevDetails) => [...prevDetails, productDetail]);
-    //         console.log('Thông tin chi tiết sản phẩm đã lưu:', productDetail);
-    //     } catch (error) {
-    //         console.error('Lỗi khi tải lên hình ảnh:', error);
-    //     }
-    // };
-
     const handleSave = (data) => {
         if (editIndex === null) {
             // Thêm mới sản phẩm nếu không có editIndex
@@ -255,7 +227,7 @@ function ProductForm() {
                         value={branchId}
                         onChange={(e) => setBranchId(e.target.value)}  // Thêm onchange cho branchId
                     >
-                        <option value="">Chọn Chi Nhánh</option>
+                        <option value="">Chọn thương hiệu</option>
                         {branches.map((branch) => (
                             <option key={branch.id} value={branch.id}>
                                 {branch.branchName}

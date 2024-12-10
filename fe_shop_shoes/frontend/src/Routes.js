@@ -5,6 +5,7 @@ import { useAuth } from 'core';
 import { Main as MainLayout, Minimal as MinimalLayout } from 'layouts';
 import { PrivateRoute, PublicRoute } from 'components';
 import Admin from 'views/Admin/Admin';
+import UserDetails from 'views/UserDetails/UserDetail';
 
 const HomeView = lazy(() => import('views/Home'));
 const LoginView = lazy(() => import('views/Login'));
@@ -22,6 +23,10 @@ const AllUsers = lazy(() => import('views/Admin/components/AllUsers/AllUsers'));
 const AllOrder = lazy(() => import('views/Admin/components/AllOrder/AllOrder'));
 const Dashboard = lazy(() => import('views/Admin/components/Dashboard/Dashboard'));
 const ProductFormUpdate = lazy(() => import('views/Admin/components/AllProduct/ProductFormUpdate/ProductFormUpdate'));
+const UserDetai = lazy(() => import('views/UserDetails/UserDetail'));
+const ProductSearch = lazy(() => import('views/ProductSearch/ProductSearch'));
+const ProductAdd = lazy(() => import('views/Admin/components/AllProduct/ProductForm/ProductForm'));
+const AllCategories = lazy(() => import('views/Admin/components/AllCategory/AllCategory')); // Add the route for AllCategories
 
 export const PageURLs = {
   Login: '/login',
@@ -32,12 +37,16 @@ export const PageURLs = {
   Checkout: '/checkout',
   Order: '/order',
   Favourites: '/favourites',
-  ProductList: '/categorys', // Add the route for the product list
+  // ProductList: '/product-list', // Add the route for the product list
   Admin: '/admin',
   AllProducts: '/admin/products/all',
   AllUsers: '/admin/users',
   AllOrder: '/admin/orders',
   Dashboard: '/admin/dashboard',
+  UserDetails: '/user-details',
+  ProductSearch: '/product-search',
+  ProductAdd : '/admin/products/add',
+  AllCategories: '/admin/categories',
 };
 
 const RoutesComponent = () => {
@@ -87,7 +96,14 @@ const RoutesComponent = () => {
               </PrivateRoute>
             }
           />
-
+          <Route
+            path={PageURLs.UserDetails} // Add the new route
+            element={
+              <PrivateRoute>
+                <UserDetai />
+              </PrivateRoute>
+            }
+          />
           <Route
             path={PageURLs.Favourites}
             element={
@@ -97,13 +113,14 @@ const RoutesComponent = () => {
             }
           />
           <Route
-            path={PageURLs.ProductList} // Add the new route
+            path={PageURLs.ProductSearch} // Add the new route
             element={
 
-              <ProductList />
+              <ProductSearch />
 
             }
           />
+          
         </Route>
         <Route path="*" element={<NotFoundView />} />
         <Route path="/" element={<MinimalLayout />}>
@@ -128,7 +145,9 @@ const RoutesComponent = () => {
             <Route path="products/details/:id" element={<ProductFormUpdate />} />
             <Route path="users" element={<AllUsers />} />
             <Route path="orders" element={<AllOrder />} />
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />}/>
+            <Route path="products/add" element={<ProductAdd />}/>
+            <Route path="categories" element={<AllCategories />} />
             {/* Các route khác */}
           </Route>
 

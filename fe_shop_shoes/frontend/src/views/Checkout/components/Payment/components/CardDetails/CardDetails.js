@@ -6,10 +6,10 @@ const CardDetails = ({ formik }) => {
       <Grid item xs={12}>
       <Box sx={{ mt: 2, textAlign: 'center' }}>
           <img
-            src="/frontend/build/images/qrCode.png"  // Đường dẫn đến mã QR trong thư mục images
+            src="http://res.cloudinary.com/ddbtn5izu/image/upload/v1732704752/uvdwn8jrviwfwgmkv5ge.jpg"  // Đường dẫn đến mã QR trong thư mục images
             alt="QR Code"
-            width="200px"
-            height="200px"
+            width="400px"
+            height="600px"
           />
         </Box>
       </Grid>

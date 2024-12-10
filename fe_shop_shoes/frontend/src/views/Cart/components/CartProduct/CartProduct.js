@@ -24,6 +24,8 @@ const CartProduct = ({ product }) => {
     }
   }
 
+  console.log('Product Details:', product); // Log the product object
+
   return (
     <Card sx={{ display: 'flex', height: 140, mb: 3, position: 'relative' }}>
       <CardMedia component="img" sx={{ width: 100 }} image={product.fileUrl} alt={product.productName} />

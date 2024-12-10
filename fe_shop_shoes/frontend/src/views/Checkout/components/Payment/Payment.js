@@ -18,7 +18,7 @@ const Payment = ({ formik }) => {
   };
 
   return (
-    <Grid container spacing={3} sx={{ px: 3 }}>
+    <Grid container spacing={3} sx={{ px: 3}}>
       <Grid item xs={12} md={8} lg={8}>
         <Paper sx={{ p: 3, mb: 2 }}>
           {paymentMethods.map((method) => (

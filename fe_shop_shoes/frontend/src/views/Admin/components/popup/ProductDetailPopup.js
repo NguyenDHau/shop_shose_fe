@@ -159,35 +159,6 @@ function ProductDetailPopup({ open, onClose, onSave, status, productDetail }) {
     };
 
     const handleSave = () => {
-
-        // const color = colors.find((c) => c.id === Number(selectedColorId));
-        // const colorName = color ? color.colorName : '';
-
-        // // Lấy danh sách sizeName từ sizeQuantityList
-        // const sizeQuantityWithNames = sizeQuantityList.map((item) => {
-        //     const size = sizes.find((s) => s.id === item.sizeId);
-        //     return {
-        //         ...item,
-        //         sizeName: size ? size.sizeName : '',
-        //     };
-        // });
-        // if (selectedColorId && image && sizeQuantityList.length > 0) {
-        //     const data = {
-        //         colorId: Number(selectedColorId),
-        //         image: image, // Truyền file ảnh lên component cha
-        //         colorName: colorName,
-        //         sizeQuantityList: sizeQuantityList,
-        //         sizeColorName: sizeQuantityWithNames,
-        //     };
-
-        //     console.log("data", data);
-
-        //     onSave(data);
-        //     onClose();
-        // } else {
-        //     alert('Vui lòng chọn màu, tải lên hình ảnh và thêm kích thước cũng như số lượng!');
-        // }
-
         const color = colors.find((c) => c.id === Number(selectedColorId));
         const colorName = color ? color.colorName : '';
 

@@ -6,10 +6,12 @@ import Headline from '../Headline'
 import NewReleasesIcon from '@mui/icons-material/NewReleases'
 import Slider from 'react-slick'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const NewArrivals = () => {
   const theme = useTheme()
   const [branches, setBranches] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchBranches = async () => {
@@ -55,20 +57,14 @@ const NewArrivals = () => {
     ],
   }
 
+  const handleCategoryClick = (branchId) => {
+    navigate(`/product-search`, { state: { branchId } });
+  };
+
   return (
     <>
       <Headline
         icon={<NewReleasesIcon color="success" />}
-        additionalComponent={
-          <Button
-            component={Link}
-            href="#"
-            sx={{ fontSize: 14, color: (theme) => theme.palette.grey[600] }}
-            endIcon={<ArrowRight />}
-          >
-            View all
-          </Button>
-        }
         sx={{ marginTop: 4 }}
       >
         Branchs
@@ -85,7 +81,7 @@ const NewArrivals = () => {
                 margin: '0 auto', // Căn giữa card
               }}
             >
-              <CardActionArea>
+              <CardActionArea onClick={() => handleCategoryClick(branch.id)}>
                 <Paper elevation={1} sx={{ overflow: 'hidden', position: 'relative', borderRadius: '12px' }}>
                   <Chip
                     color="secondary"

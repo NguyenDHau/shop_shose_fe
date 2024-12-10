@@ -50,7 +50,7 @@ const Register = () => {
             username,
             email,
             password,
-            role: ['user'], // Default role set to 'user'
+            role: ['user'],
             firstName,
             lastName,
             phoneNumber,

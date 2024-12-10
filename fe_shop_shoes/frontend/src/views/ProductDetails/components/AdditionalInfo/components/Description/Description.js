@@ -1,18 +1,33 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material';
 
 const Description = ({ product }) => {
+  // Tách chuỗi description thành các câu dựa trên dấu chấm
+  const sentences = product.description
+    ? product.description.split('.').filter(sentence => sentence.trim() !== '')
+    : [];
+
   return (
     <Box>
-      <Typography fontSize={22} fontWeight={600} sx={{ my: 3 }}>
-        Specification:
-      </Typography>
-      <Typography fontSize={15}>Brand: {product.brand}</Typography>
-      <Typography fontSize={15}>Model: {product.title}</Typography>
-      <Typography fontSize={15}>{product.description}</Typography>
-      <Typography fontSize={15}>Features: FM Radio, Card Supported (Micro SD / TF)</Typography>
-      <Typography fontSize={15}>Made in China</Typography>
+      {sentences.map((sentence, index) => (
+        <Box 
+          key={index} 
+          display="flex" 
+          alignItems="flex-start" 
+          mb={1} // Thêm margin giữa các dòng
+        >
+          {/* Hiển thị số thứ tự */}
+          <Typography variant="body2" fontWeight="bold" mr={1}>
+            {index + 1}.
+          </Typography>
+          {/* Hiển thị nội dung */}
+          <Typography fontSize={15}>
+            {sentence.trim()}.
+          </Typography>
+        </Box>
+      ))}
     </Box>
-  )
-}
+  );
+};
 
-export default Description
+export default Description;
+

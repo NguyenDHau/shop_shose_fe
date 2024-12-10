@@ -6,6 +6,48 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { PageURLs } from 'Routes';
 import * as yup from 'yup';
 
+// const Login = () => {
+//   const navigate = useNavigate(); // Initialize useNavigate hook
+
+//   const validationSchema = yup.object({
+//     username: yup.string('Enter your username').required('Username is required'),
+//     password: yup.string('Enter your password').required('Password is required'),
+//   });
+
+//   const formik = useFormik({
+//     initialValues: {
+//       username: '', // Set initial value to an empty string
+//       password: '', // Set initial value to an empty string
+//     },
+//     validationSchema,
+//     onSubmit: async ({ username, password }) => {
+//       try {
+//         const response = await fetch('http://localhost:8080/api/auth/signin', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify({ username, password }),
+//         });
+
+//         if (!response.ok) {
+//           throw new Error('Login failed! Please check your credentials.');
+//         }
+
+//         const data = await response.json();
+//         // Store the access token in localStorage or state
+//         localStorage.setItem('accessToken', data.token);
+//         localStorage.setItem('userId', data.id);
+
+//         // Redirect to the register page after successful login
+//         navigate('/');
+//       } catch (error) {
+//         console.error('Error:', error);
+//         // Optionally handle errors and display messages to users
+//       }
+//     },
+//   });
+
 const Login = () => {
   const navigate = useNavigate(); // Initialize useNavigate hook
 
@@ -35,15 +77,22 @@ const Login = () => {
         }
 
         const data = await response.json();
-        // Store the access token in localStorage or state
+
+        // Check the allowAccess field
+        if (data.allowAccess === 'Unvalid') {
+          throw new Error('Your account does not have access. Please contact support.');
+        }
+
+        // Store the access token and user ID in localStorage
         localStorage.setItem('accessToken', data.token);
         localStorage.setItem('userId', data.id);
 
-        // Redirect to the register page after successful login
-        navigate('/categorys');
+        // Redirect to the home page after successful login
+        navigate('/');
       } catch (error) {
         console.error('Error:', error);
-        // Optionally handle errors and display messages to users
+        // Optionally display error messages to users
+        alert(error.message); // Show the error to the user
       }
     },
   });

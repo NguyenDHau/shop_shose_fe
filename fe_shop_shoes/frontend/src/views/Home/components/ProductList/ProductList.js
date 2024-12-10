@@ -44,16 +44,6 @@ const ProductList = () => {
     <Box sx={{ p: 3 }}>
       <Headline
         icon={<NewReleasesIcon color="success" />}
-        additionalComponent={
-          <Button
-            component={Link}
-            href="#"
-            sx={{ fontSize: 14, color: (theme) => theme.palette.grey[600] }}
-            endIcon={<ArrowRight />}
-          >
-            View all
-          </Button>
-        }
         sx={{ marginTop: 4 }}
       >
         Products

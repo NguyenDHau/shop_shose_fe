@@ -14,14 +14,17 @@ import {
 import { useState } from 'react'
 import { useAuth } from 'core'
 import { Link } from 'react-router-dom'
-import { CartButton, FavouritesButton, LiveSearch } from './components'
+import { CartButton, LiveSearch } from './components'
 import SearchButton from './components/SearchButton/SearchButton'
 import OrderButton from './components/OrderButton/OrderButton'
+import { PageURLs } from 'Routes';
+import { useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
   const { user, logout } = useAuth()
   const [anchorElUser, setAnchorElUser] = useState(null)
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('md'))
+  const navigate = useNavigate();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget)
@@ -59,7 +62,7 @@ const NavigationBar = () => {
             {!isMobile && <LiveSearch />}
             <Box display="flex" alignItems="center">
               {isMobile && <SearchButton />}
-              <FavouritesButton />
+              <OrderButton />
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mx: 1 }}>
                   <Avatar alt={user?.name}>{user?.name[0]}</Avatar>
@@ -82,11 +85,14 @@ const NavigationBar = () => {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={logout}>
-                  <Typography textAlign="center">Logout</Typography>
+                  <Typography textAlign="center">Đăng xuất</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => navigate(PageURLs.UserDetails)}>
+                  <Typography textAlign="center">Thông tin cá nhân</Typography>
                 </MenuItem>
               </Menu>
               <CartButton />
-              <OrderButton />
+
             </Box>
           </Box>
         </Toolbar>

@@ -42,22 +42,6 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  // Hàm thêm sản phẩm vào giỏ hàng và lưu vào sessionStorage
-  // useEffect(() => {
-  //   // Lấy dữ liệu giỏ hàng từ sessionStorage khi component mount
-  //   const savedCart = sessionStorage.getItem("cart");
-  //   if (savedCart) {
-  //     setCart(JSON.parse(savedCart));
-  //   }
-
-  //   // Giả sử bạn có logic để lấy dữ liệu sản phẩm
-  //   const fetchProduct = async () => {
-  //     // ... logic tải sản phẩm
-  //     setLoading(false); // Đặt lại loading sau khi tải
-  //   };
-
-  //   fetchProduct();
-  // }, []);
 
   const addToCart = (product) => {
     // Sao chép giỏ hàng hiện tại
@@ -85,7 +69,6 @@ const ProductDetails = () => {
 
     // Cập nhật lại giỏ hàng và lưu vào sessionStorage
     setCart(updatedCart);
-    sessionStorage.setItem("cart", JSON.stringify(updatedCart)); // Lưu giỏ hàng vào sessionStorage
   };
 
   

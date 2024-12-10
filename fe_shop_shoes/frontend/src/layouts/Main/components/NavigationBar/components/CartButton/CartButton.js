@@ -81,12 +81,15 @@ const CartButton = () => {
             return (
               <Fragment key={`${product.productId}-${product.size}`}>
                 <Card sx={{ p: 2, display: 'flex', height: 100, alignItems: 'center' }} elevation={0}>
-                  <CardMedia component="img" sx={{ width: 100 }} image={product.thumbnail} alt={product.productName} />
+                  <CardMedia component="img" sx={{ width: 100 }} image={product.fileUrl} alt={product.productName} />
                   <CardContent sx={{ flex: '1 0 auto', p: 0, pl: 2, pb: '0 !important' }}>
                     <Box display="flex" justifyContent="space-between">
                       <Box maxWidth="140px">
                         <Typography variant="body1" noWrap>
-                          {product.productName} - Size: {product.size}
+                          {product.productName}
+                        </Typography>
+                        <Typography variant="body1" noWrap>
+                          Size: {product.sizeName}
                         </Typography>
                         <Typography variant="overline" component="div">
                           {product.discountPercentage > 0 ? (
