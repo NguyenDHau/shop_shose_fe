@@ -17,7 +17,7 @@ const AllOrders = () => {
         date: '',
         orderId: ''
     });
-    const[selectedOrderNote, setSelectedOrderNote] = useState('');
+    const [selectedOrderNote, setSelectedOrderNote] = useState('');
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -43,7 +43,7 @@ const AllOrders = () => {
     // Hàm lọc đơn hàng dựa trên các filter
     const applyFilters = (order) => {
         const { status, statusPayment, phone, date, orderId } = filters;
-        
+
         const statusMatch = status ? order.status === status : true;
         const statusPaymentMatch = statusPayment ? order.status_payment === statusPayment : true;
         const phoneMatch = phone ? order.cusPhone.includes(phone) : true;
@@ -177,63 +177,63 @@ const AllOrders = () => {
 
                     {/* Bộ lọc */}
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, mb: 2 }}>
-    <TextField
-        value={filters.orderId}
-        onChange={handleFilterChange}
-        name="orderId"
-        label="Lọc theo Order ID"
-        variant="outlined"
-        size="small"
-        sx={{ minWidth: 120 }}
-    />
-    <Select
-        value={filters.status}
-        onChange={handleFilterChange}
-        name="status"
-        variant="outlined"
-        size="small"
-        sx={{ minWidth: 120 }}
-    >
-        <MenuItem value="">Tất cả trạng thái</MenuItem>
-        <MenuItem value="Loading">Loading</MenuItem>
-        <MenuItem value="Shipping">Shipping</MenuItem>
-        <MenuItem value="Done">Done</MenuItem>
-    </Select>
-    <Select
-        value={filters.statusPayment}
-        onChange={handleFilterChange}
-        name="statusPayment"
-        variant="outlined"
-        size="small"
-        sx={{ minWidth: 120 }}
-    >
-        <MenuItem value="">Tất cả thanh toán</MenuItem>
-        <MenuItem value="Loading">Loading</MenuItem>
-        <MenuItem value="Done">Done</MenuItem>
-    </Select>
-    <TextField
-        value={filters.date}
-        onChange={handleFilterChange}
-        name="date"
-        label="Lọc theo ngày"
-        variant="outlined"
-        size="small"
-        sx={{ minWidth: 120 }}
-        type="date"
-        InputLabelProps={{
-            shrink: true,
-        }}
-    />
-    <TextField
-        value={filters.phone}
-        onChange={handleFilterChange}
-        name="phone"
-        label="Lọc theo số điện thoại"
-        variant="outlined"
-        size="small"
-        sx={{ minWidth: 120 }}
-    />
-</Box>
+                        <TextField
+                            value={filters.orderId}
+                            onChange={handleFilterChange}
+                            name="orderId"
+                            label="Lọc theo Order ID"
+                            variant="outlined"
+                            size="small"
+                            sx={{ minWidth: 120 }}
+                        />
+                        <Select
+                            value={filters.status}
+                            onChange={handleFilterChange}
+                            name="status"
+                            variant="outlined"
+                            size="small"
+                            sx={{ minWidth: 120 }}
+                        >
+                            <MenuItem value="">Tất cả trạng thái</MenuItem>
+                            <MenuItem value="Loading">Loading</MenuItem>
+                            <MenuItem value="Shipping">Shipping</MenuItem>
+                            <MenuItem value="Done">Done</MenuItem>
+                        </Select>
+                        <Select
+                            value={filters.statusPayment}
+                            onChange={handleFilterChange}
+                            name="statusPayment"
+                            variant="outlined"
+                            size="small"
+                            sx={{ minWidth: 120 }}
+                        >
+                            <MenuItem value="">Tất cả thanh toán</MenuItem>
+                            <MenuItem value="Loading">Loading</MenuItem>
+                            <MenuItem value="Done">Done</MenuItem>
+                        </Select>
+                        <TextField
+                            value={filters.date}
+                            onChange={handleFilterChange}
+                            name="date"
+                            label="Lọc theo ngày"
+                            variant="outlined"
+                            size="small"
+                            sx={{ minWidth: 120 }}
+                            type="date"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField
+                            value={filters.phone}
+                            onChange={handleFilterChange}
+                            name="phone"
+                            label="Lọc theo số điện thoại"
+                            variant="outlined"
+                            size="small"
+                            sx={{ minWidth: 120 }}
+                        />
+                    </Box>
 
 
                     <TableContainer>

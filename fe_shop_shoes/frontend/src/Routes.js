@@ -27,6 +27,7 @@ const UserDetai = lazy(() => import('views/UserDetails/UserDetail'));
 const ProductSearch = lazy(() => import('views/ProductSearch/ProductSearch'));
 const ProductAdd = lazy(() => import('views/Admin/components/AllProduct/ProductForm/ProductForm'));
 const AllCategories = lazy(() => import('views/Admin/components/AllCategory/AllCategory')); // Add the route for AllCategories
+const ListReview = lazy(() => import('views/Admin/components/AllProduct/ListReview/ListReview'));
 
 export const PageURLs = {
   Login: '/login',
@@ -47,6 +48,7 @@ export const PageURLs = {
   ProductSearch: '/product-search',
   ProductAdd : '/admin/products/add',
   AllCategories: '/admin/categories',
+  ListReview: '/admin/products/reviews',
 };
 
 const RoutesComponent = () => {
@@ -148,6 +150,7 @@ const RoutesComponent = () => {
             <Route path="dashboard" element={<Dashboard />}/>
             <Route path="products/add" element={<ProductAdd />}/>
             <Route path="categories" element={<AllCategories />} />
+            <Route path="products/reviews" element={<ListReview />} />
             {/* Các route khác */}
           </Route>
 

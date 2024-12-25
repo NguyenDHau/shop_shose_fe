@@ -144,7 +144,7 @@ const CategoryManager = () => {
   };
 
   return (
-    <Box sx={{ p: 3, marginTop: '100px', overflowY: 'auto', w: '100%' }}>
+    <Box sx={{ p: 3, marginTop: '100px', overflowY: 'auto' }}>
     <div className="container mt-5">
       <h2 className="mb-5 text-center text-primary">Quản lý danh mục</h2>
       <Button variant="success" size="lg" className="mb-4" onClick={() => handleOpenModal("add")}>
