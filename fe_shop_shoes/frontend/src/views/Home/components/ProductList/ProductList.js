@@ -46,7 +46,7 @@ const ProductList = () => {
         icon={<NewReleasesIcon color="success" />}
         sx={{ marginTop: 4 }}
       >
-        Products
+        Sản phẩm
       </Headline>
       {loading ? (
         <Typography align="center">Đang tải sản phẩm...</Typography>

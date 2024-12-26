@@ -67,7 +67,7 @@ const NewArrivals = () => {
         icon={<NewReleasesIcon color="success" />}
         sx={{ marginTop: 4 }}
       >
-        Branchs
+        Thương hiệu
       </Headline>
       <Slider {...settings} style={{ padding: '0 8px' }}> {/* Giảm padding của Slider */}
         {branches.map((branch) => (

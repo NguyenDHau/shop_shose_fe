@@ -72,7 +72,7 @@ const TopCategories = () => {
         icon={<WidgetsIcon color="primary" />}
         sx={{ marginTop: 4 }}
       >
-        Top Categories
+        Danh mục sản phẩm
       </Headline>
       <Slider {...settings} style={{ paddingTop: 8, paddingBottom: 8 }}>
         {categories.map((category) => (

@@ -41,7 +41,7 @@ const TopRatings = () => {
       <Headline
         icon={<WorkspacePremiumIcon color="warning" />}
       >
-        Top Ratings
+        Những sản phẩm được yêu thích nhất
       </Headline>
       <Paper sx={{ p: 1.5 }}>
         <Grid container spacing={1.5}>

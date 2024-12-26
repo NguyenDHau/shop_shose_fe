@@ -9,26 +9,26 @@ import theme from 'theme'
 const deliveryDetails = [
   {
     id: 1,
-    title: 'Worldwide Delivery',
-    subtitle: 'We offer competitive prices on our 100 million plus product any range.',
+    title: 'Giao hàng toàn quốc',
+    subtitle: 'Đảm bảo là cửa hàng uy tín hàng đầu và được yêu thích nhất hiện nay tại Việt Nam.',
     icon: <AirportShuttleIcon />,
   },
   {
     id: 2,
-    title: 'Safe Payment',
-    subtitle: 'We offer competitive prices on our 100 million plus product any range.',
+    title: 'Thanh toán an toàn',
+    subtitle: 'Đảm bảo là cửa hàng uy tín hàng đầu và được yêu thích nhất hiện nay tại Việt Nam.',
     icon: <PriceCheckIcon />,
   },
   {
     id: 3,
-    title: 'Shop With Confidence',
-    subtitle: 'We offer competitive prices on our 100 million plus product any range.',
+    title: 'Chính sách hoàn trả',
+    subtitle: 'Đảm bảo là cửa hàng uy tín hàng đầu và được yêu thích nhất hiện nay tại Việt Nam.',
     icon: <LockResetIcon />,
   },
   {
     id: 4,
-    title: '24/7 Support',
-    subtitle: 'We offer competitive prices on our 100 million plus product any range.',
+    title: 'Hỗ trợ 24/7',
+    subtitle: 'Đảm bảo là cửa hàng uy tín hàng đầu và được yêu thích nhất hiện nay tại Việt Nam.',
     icon: <SupportAgentIcon />,
   },
 ]
