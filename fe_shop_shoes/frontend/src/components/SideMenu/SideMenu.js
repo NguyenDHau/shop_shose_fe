@@ -53,7 +53,7 @@ const SideMenu = () => {
               }}
             >
               <Typography fontWeight={600} fontSize={14}>
-                Apply Voucher
+                Áp dụng voucher
               </Typography>
             </Button>
           </Box>
@@ -76,7 +76,7 @@ const SideMenu = () => {
             <Link to="/checkout" style={{ textDecoration: 'none', color: '#fff' }}>
               <Button fullWidth variant="contained" color="primary" sx={{ height: 40 }}>
                 <Typography fontWeight={600} fontSize={14}>
-                  Checkout Now
+                  Mua ngay
                 </Typography>
               </Button>
             </Link>

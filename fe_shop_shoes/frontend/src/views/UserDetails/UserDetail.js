@@ -368,7 +368,7 @@ const UserDetails = ({ userId }) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                label="Phone Number"
+                                label="Số điện thoại"
                                 variant="outlined"
                                 fullWidth
                                 value={user.phoneNumber || ""}
@@ -379,7 +379,7 @@ const UserDetails = ({ userId }) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                label="Address"
+                                label="Địa chỉ"
                                 variant="outlined"
                                 fullWidth
                                 value={user.address || ""}

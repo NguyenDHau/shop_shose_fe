@@ -26,20 +26,6 @@ const Dashboard = () => {
     setError(null); // Reset lỗi trước khi gọi API
     try {
       const accessToken = localStorage.getItem('accessToken') || '';
-
-      // Gọi API doanh thu theo ngày
-      // const date = selectedDate.format('YYYY-MM-DD');
-      // const dateResponse = await axios.get(
-      //   `http://localhost:8080/api/orders/revenue/date?date=${date}`,
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${accessToken}`,
-      //     },
-      //   }
-      // );
-      // setRevenueByDate(dateResponse.data);
-
-      // Gọi API doanh thu theo tháng
       const monthResponse = await axios.get(
         `http://localhost:8080/api/orders/revenue/month?year=${selectedYear}&month=${selectedMonth}`,
         {
@@ -146,13 +132,13 @@ const Dashboard = () => {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" sx={{ mb: 3 }} align="center">
-        Dashboard
+        Thống kê doanh thu
       </Typography>
       {/* Bộ lọc */}
       <Box sx={{ mb: 3, display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
-            label="Select Date"
+            label="Chọn ngày"
             value={selectedDate}
             onChange={(newValue) => setSelectedDate(newValue)}
             renderInput={(params) => <TextField {...params} />}
@@ -160,7 +146,7 @@ const Dashboard = () => {
         </LocalizationProvider>
         <TextField
           select
-          label="Select Month"
+          label="Chọn tháng"
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(Number(e.target.value))}
         >
@@ -171,13 +157,13 @@ const Dashboard = () => {
           ))}
         </TextField>
         <TextField
-          label="Select Year"
+          label="Chọn năm"
           type="number"
           value={selectedYear}
           onChange={(e) => setSelectedYear(Number(e.target.value))}
         />
         <Button variant="contained" onClick={handleApplyFilters}>
-          Apply Filters
+          Đồng ý
         </Button>
       </Box>
 
@@ -194,7 +180,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={4}>
           <Paper sx={{ p: 2, textAlign: 'center' }}>
             <Typography variant="h6" sx={{ mb: 2 }}>
-              Revenue ({selectedDate.format('YYYY-MM-DD')})
+              Doanh thu ({selectedDate.format('YYYY-MM-DD')})
             </Typography>
             <Bar data={chartDataDate} options={{ responsive: true }} />
           </Paper>
@@ -204,7 +190,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={4}>
           <Paper sx={{ p: 2, textAlign: 'center' }}>
             <Typography variant="h6" sx={{ mb: 2 }}>
-              Revenue (Month: {selectedMonth}, Year: {selectedYear})
+              Doanh thu (Tháng: {selectedMonth}, Năm: {selectedYear})
             </Typography>
             <Bar data={chartDataMonth} options={{ responsive: true }} />
           </Paper>
@@ -214,7 +200,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={4}>
           <Paper sx={{ p: 2, textAlign: 'center' }}>
             <Typography variant="h6" sx={{ mb: 2 }}>
-              Revenue (Year: {selectedYear})
+              Doanh thu (Năm: {selectedYear})
             </Typography>
             <Bar data={chartDataYear} options={{ responsive: true }} />
           </Paper>

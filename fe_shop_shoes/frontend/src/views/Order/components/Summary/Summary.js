@@ -18,7 +18,7 @@ const Summary = ({ payment, cart }) => {
   return (
     <Paper sx={{ p: 3, mt: 3 }}>
       <Typography variant="h6" sx={{ mb: 2 }}>
-        Total summary
+        Tổng số tiền
       </Typography>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography sx={{ color: (theme) => theme.palette.grey[500], mb: 1 }}>Subtotal:</Typography>

@@ -111,7 +111,7 @@ const AllUsers = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <FormControl fullWidth variant="outlined">
-                <InputLabel id="filter-allow-access-label">Lọc theo Allow Access</InputLabel>
+                <InputLabel id="filter-allow-access-label">Lọc theo trạng thái tài khoản</InputLabel>
                 <Select
                   labelId="filter-allow-access-label"
                   value={filterAllowAccess}
@@ -119,8 +119,8 @@ const AllUsers = () => {
                   label="Lọc theo Allow Access"
                 >
                   <MenuItem value="">Tất cả</MenuItem>
-                  <MenuItem value="Valid">Valid</MenuItem>
-                  <MenuItem value="Unvalid">Unvalid</MenuItem>
+                  <MenuItem value="Valid">Hợp lệ</MenuItem>
+                  <MenuItem value="Unvalid">Tạm khoá</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -133,11 +133,11 @@ const AllUsers = () => {
                   <TableRow>
                     <TableCell>ID</TableCell>
                     <TableCell>Avatar</TableCell>
-                    <TableCell>Username</TableCell>
-                    <TableCell>Full Name</TableCell>
+                    <TableCell>Tên tài khoản</TableCell>
+                    <TableCell>Họ tên</TableCell>
                     <TableCell>Email</TableCell>
-                    <TableCell>Phone Number</TableCell>
-                    <TableCell>Allow Access</TableCell>
+                    <TableCell>Số diện thoại</TableCell>
+                    <TableCell>Trạng thái tài khoản</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -159,8 +159,8 @@ const AllUsers = () => {
                           size="small"
                           sx={{ minWidth: 120 }}
                         >
-                          <MenuItem value="Unvalid">Unvalid</MenuItem>
-                          <MenuItem value="Valid">Valid</MenuItem>
+                          <MenuItem value="Unvalid">Tạm khoá</MenuItem>
+                          <MenuItem value="Valid">Hợp lệ</MenuItem>
                         </Select>
                       </TableCell>
                     </TableRow>

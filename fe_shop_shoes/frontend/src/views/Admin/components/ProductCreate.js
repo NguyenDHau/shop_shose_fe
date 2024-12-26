@@ -258,7 +258,7 @@ function Admin() {
                 onClick={handleSaveProduct}
                 style={{ marginTop: '20px' }}
             >
-                Save Product
+                Lưu
             </Button>
         </div>
     );

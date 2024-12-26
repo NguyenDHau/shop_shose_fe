@@ -291,7 +291,7 @@ function ProductForm() {
                 onClick={handleSaveProduct}
                 style={{ marginTop: '20px' }}
             >
-                Save Product
+                Lưu sản phẩm
             </Button>
         </div>
     );

@@ -45,7 +45,7 @@ const AllProducts = () => {
   };
 
   return (
-    <Box sx={{ p: 3, marginTop: '1000px', overflowY: 'scroll' }}>
+    <Box sx={{ p: 3, marginTop: '50px', overflowY: 'scroll' }}>
       <Typography variant="h4" gutterBottom>Danh Sách Sản Phẩm</Typography>
 
       {showProductForm ? (

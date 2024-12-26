@@ -11,25 +11,25 @@ const Subtotal = () => {
   return (
     <Paper sx={{ p: 4, mb: 2}}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography sx={{ fontSize: 14, color: (theme) => theme.palette.grey[500], mb: 1 }}>Subtotal:</Typography>
+        <Typography sx={{ fontSize: 14, color: (theme) => theme.palette.grey[500], mb: 1 }}>Giá gốc:</Typography>
         <Typography sx={{ fontSize: 19 }}>
           <DisplayCurrency number={priceWithoutDiscount} />
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography sx={{ fontSize: 14, color: (theme) => theme.palette.grey[500], mb: 1 }}>Shipping:</Typography>
+        <Typography sx={{ fontSize: 14, color: (theme) => theme.palette.grey[500], mb: 1 }}>Vận chuyển:</Typography>
         <Typography sx={{ fontSize: 19 }}>
           <DisplayCurrency number={0} />
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography sx={{ fontSize: 14, color: (theme) => theme.palette.grey[500], mb: 1 }}>Tax:</Typography>
+        <Typography sx={{ fontSize: 14, color: (theme) => theme.palette.grey[500], mb: 1 }}>Phí:</Typography>
         <Typography sx={{ fontSize: 19 }}>
           <DisplayCurrency number={0} />
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography sx={{ fontSize: 14, color: (theme) => theme.palette.grey[500], mb: 1 }}>Discount:</Typography>
+        <Typography sx={{ fontSize: 14, color: (theme) => theme.palette.grey[500], mb: 1 }}>Giảm giá</Typography>
         <Typography sx={{ fontSize: 19 }}>
           <DisplayCurrency number={priceWithoutDiscount} />
         </Typography>
@@ -49,7 +49,7 @@ const Subtotal = () => {
         </Typography>
         <Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', mt: 3, mb: 2 }}>
-            <TextField label="Voucher" name="voucher" size="small" fullWidth />
+            <TextField label="Mã giảm giá" name="voucher" size="small" fullWidth />
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', mb: 3 }}>
             <Button
@@ -68,7 +68,7 @@ const Subtotal = () => {
               }}
             >
               <Typography fontWeight={600} fontSize={14}>
-                Apply Voucher
+                Áp dụng voucher
               </Typography>
             </Button>
           </Box>

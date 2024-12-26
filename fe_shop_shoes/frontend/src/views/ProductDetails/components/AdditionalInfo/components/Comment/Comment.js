@@ -155,11 +155,11 @@ export default function Comment({ reviews }) {
 
       <Box display="flex" alignItems="flex-start" flexDirection="column" marginTop={3}>
         <Typography variant="h5" fontWeight={600}>
-          Write a Review for this product
+          Hãy cho chúng tôi biết cảm nhận của bạn về sản phẩm
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
           <Box display="flex" gap={1} sx={{ my: 2 }}>
-            <Typography fontWeight={600}>Your Rating</Typography>
+            <Typography fontWeight={600}>Đánh giá sao</Typography>
             <Typography fontWeight={600} color="primary">
               *
             </Typography>
@@ -171,7 +171,7 @@ export default function Comment({ reviews }) {
       <Box component="form" autoComplete="off">
         <Box>
           <Box display="flex" gap={1} sx={{ my: 2 }}>
-            <Typography fontWeight={600}>Your Review</Typography>
+            <Typography fontWeight={600}>Lời nhận xét</Typography>
             <Typography fontWeight={600} color="primary">
               *
             </Typography>
@@ -182,7 +182,7 @@ export default function Comment({ reviews }) {
             required
             size="small"
             id="outlined-multiline-static"
-            placeholder="Write a review here..."
+            placeholder="Viết tại đây ...."
             multiline
             rows={8}
             value={comment}
@@ -196,7 +196,7 @@ export default function Comment({ reviews }) {
           variant="contained"
           color="primary"
         >
-          Submit
+          Gửi
         </Button>
       </Box>
     </>

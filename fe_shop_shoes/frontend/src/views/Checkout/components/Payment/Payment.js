@@ -9,8 +9,8 @@ import { Subtotal } from 'components';
 
 const Payment = ({ formik }) => {
   const paymentMethods = [
-    { label: 'Cash on delivery', state: 'delivery' },
-    { label: 'Pay with card', state: 'card', component: <CardDetails formik={formik} /> },
+    { label: ' Thanh toán khi nhận hàng', state: 'delivery' },
+    { label: 'Thanh toán với ngân hàng', state: 'card', component: <CardDetails formik={formik} /> },
   ];
 
   const handleExpandAccordion = (newExpanded) => {
@@ -39,7 +39,7 @@ const Payment = ({ formik }) => {
             fullWidth
             multiline
             minRows={3}
-            label="Order Note"
+            label="Chú ý"
             name="payment.orderNote"
             value={formik.values.payment?.orderNote}
             onChange={formik.handleChange}

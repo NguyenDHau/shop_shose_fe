@@ -370,8 +370,8 @@ function ProductFormUpdate() {
                                     }
                                 </td>
                                 <td>
-                                    <Button onClick={() => handleEdit(index, detail)}>Edit</Button>
-                                    <Button onClick={() => handleDelete(index)}>Delete</Button>
+                                    <Button onClick={() => handleEdit(index, detail)}>Chính sửa</Button>
+                                    <Button onClick={() => handleDelete(index)}>Xoá</Button>
                                 </td>
                             </tr>
                         ))}
@@ -385,7 +385,7 @@ function ProductFormUpdate() {
                 onClick={handleSaveProduct}
                 style={{ marginTop: '20px' }}
             >
-                Save Product
+                Lưu sản phẩm
             </Button>
 
             {/* Nút Xóa */}
@@ -395,7 +395,7 @@ function ProductFormUpdate() {
                 onClick={handleOpenDeleteDialog}  // Mở popup xóa
                 style={{ marginTop: '20px' }}
             >
-                Delete Product
+                Xoá sản phẩm
             </Button>
 
             {/* Delete Confirmation Dialog */}

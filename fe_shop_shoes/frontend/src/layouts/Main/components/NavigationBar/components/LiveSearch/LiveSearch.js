@@ -389,7 +389,7 @@ const LiveSearch = ({ toggleDrawer, setState }) => {
           <TextField
             fullWidth
             onKeyPress={onKeyPress}
-            placeholder="Searching for..."
+            placeholder="Tìm kiếm ...."
             sx={{
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {

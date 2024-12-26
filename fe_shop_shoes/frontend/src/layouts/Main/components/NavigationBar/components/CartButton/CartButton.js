@@ -143,7 +143,7 @@ const CartButton = () => {
               toggleDrawer(false)
             }}
           >
-            Checkout (<DisplayCurrency number={totalPrice} />)
+            Mua ngay (<DisplayCurrency number={totalPrice} />)
           </Button>
           <Button
             disabled={quantity === 0}
@@ -156,7 +156,7 @@ const CartButton = () => {
               toggleDrawer(false)
             }}
           >
-            View cart
+            Xem giỏ hàng
           </Button>
           <Button
             disabled={quantity < 1}
@@ -168,7 +168,7 @@ const CartButton = () => {
               toggleDrawer(false)
             }}
           >
-            Empty cart
+            Xoá toàn bộ giỏ hàng
           </Button>
         </Box>
       </Drawer>

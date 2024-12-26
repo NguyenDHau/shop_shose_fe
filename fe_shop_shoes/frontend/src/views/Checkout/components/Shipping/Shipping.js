@@ -144,14 +144,14 @@ const Shipping = ({ formik }) => {
         <Grid item xs={12} md={8} lg={8}>
           <Paper sx={{ p: 3 }}>
             <Typography variant="subtitle2" align="left" sx={{ fontWeight: 600, mb: 2 }}>
-              Shipping Address
+               Thông tin giao hàng
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
                   required
-                  label="Full name"
+                  label="Họ tên"
                   name="address.fullName"
                   value={formik.values.address?.fullName}
                   onChange={formik.handleChange}
@@ -177,7 +177,7 @@ const Shipping = ({ formik }) => {
                 <TextField
                   fullWidth
                   required
-                  label="Phone"
+                  label="Số điện thoại"
                   name="address.phone"
                   value={formik.values.address?.phone}
                   onChange={formik.handleChange}
@@ -190,7 +190,7 @@ const Shipping = ({ formik }) => {
                 <TextField
                   fullWidth
                   required
-                  label="Address"
+                  label="Địa chỉ"
                   name="address.address1"
                   value={formik.values.address?.address1}
                   onChange={formik.handleChange}
