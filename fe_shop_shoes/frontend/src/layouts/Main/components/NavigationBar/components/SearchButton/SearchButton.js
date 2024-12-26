@@ -32,7 +32,7 @@ const SearchButton = () => {
         }}
       >
         <Box sx={{ p: 2 }}>
-          <Typography variant="subtitle">Search Bazaar</Typography>
+          <Typography variant="subtitle">Search</Typography>
           <IconButton size="small" sx={{ position: 'absolute', top: 8, right: 8 }} onClick={toggleDrawer(false)}>
             <Close />
           </IconButton>

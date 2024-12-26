@@ -45,7 +45,7 @@ const Subtotal = () => {
             alignItems: 'flex-end',
           }}
         >
-          <DisplayCurrency number={totalPrice + 10} />
+          <DisplayCurrency number={totalPrice} />
         </Typography>
         <Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', mt: 3, mb: 2 }}>

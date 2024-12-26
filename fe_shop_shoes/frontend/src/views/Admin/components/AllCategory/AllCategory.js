@@ -1,55 +1,121 @@
 import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TablePagination,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Avatar,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
-import { Modal, Button, Form, Table, Image, Toast, ToastContainer } from "react-bootstrap";
-import { Box } from '@mui/material';
+import { ToastContainer, Toast } from "react-bootstrap";
 
 const CategoryManager = () => {
   const [categories, setCategories] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState("add"); // "add" or "edit"
-  const [currentCategory, setCurrentCategory] = useState({ id: null, name: "", publicId: "", imageUrl: "" });
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [showDialog, setShowDialog] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState({ name: "", publicId: "", categoryUrl: "" });
   const [imageFile, setImageFile] = useState(null);
-  const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("success");
+  const [showToast, setShowToast] = useState(false);
 
-  // Fetch all categories
+  // Fetch categories
   useEffect(() => {
     fetchCategories();
   }, []);
 
   const fetchCategories = async () => {
-    const accessToken = localStorage.getItem("accessToken") || "";
     try {
-      const response = await fetch("http://localhost:8080/api/categories", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
+      const response = await axios.get("http://localhost:8080/api/categories", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
       });
-
-      if (!response.ok) {
-        throw new Error("Error fetching categories");
-      }
-
-      const data = await response.json();
-      setCategories(data);
+      setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories", error);
     }
   };
 
-  const handleOpenModal = (type, category = { id: null, name: "", publicId: "", imageUrl: "" }) => {
-    setModalType(type);
+  const handleOpenDialog = (category = { name: "", publicId: "", categoryUrl: "" }) => {
     setCurrentCategory(category);
     setImageFile(null);
-    setShowModal(true);
+    setShowDialog(true);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setCurrentCategory({ id: null, name: "", publicId: "", imageUrl: "" });
+  const handleCloseDialog = () => {
+    setShowDialog(false);
+    setCurrentCategory({ name: "", publicId: "", categoryUrl: "" });
+  };
+
+  const handleSaveCategory = async () => {
+    try {
+      let imageResponse = null;
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        formData.append("upload_preset", "shoes_preset");
+
+        imageResponse = await axios.post(
+          "https://api.cloudinary.com/v1_1/ddbtn5izu/image/upload",
+          formData
+        );
+      }
+
+      const categoryData = {
+        name: currentCategory.name,
+        ...(imageResponse && {
+          publicId: imageResponse.data.public_id,
+          categoryUrl: imageResponse.data.secure_url,
+        }),
+      };
+
+      if (currentCategory.id) {
+        // Update existing category
+        await axios.put(`http://localhost:8080/api/categories/${currentCategory.id}`, categoryData, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+        });
+        showToastMessage("Danh mục đã được cập nhật thành công!");
+      } else {
+        // Add new category
+        await axios.post("http://localhost:8080/api/categories", categoryData, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+        });
+        showToastMessage("Danh mục mới đã được thêm thành công!");
+      }
+
+      fetchCategories();
+      handleCloseDialog();
+    } catch (error) {
+      console.error("Error saving category", error);
+      showToastMessage("Có lỗi xảy ra, vui lòng thử lại.", "danger");
+    }
+  };
+
+  const handleDeleteCategory = async (id) => {
+    if (window.confirm("Bạn có chắc chắn muốn xóa danh mục này?")) {
+      try {
+        await axios.delete(`http://localhost:8080/api/categories/${id}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+        });
+        fetchCategories();
+        showToastMessage("Danh mục đã được xóa thành công!");
+      } catch (error) {
+        console.error("Error deleting category", error);
+        showToastMessage("Không thể xóa danh mục.", "danger");
+      }
+    }
   };
 
   const showToastMessage = (message, variant = "success") => {
@@ -59,176 +125,90 @@ const CategoryManager = () => {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  const handleSaveCategory = async () => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    try {
-      let imageResponse = null;
-
-      if (imageFile) {
-        const formDataCloudinary = new FormData();
-        formDataCloudinary.append("file", imageFile);
-        formDataCloudinary.append("upload_preset", "shoes_preset");
-
-        imageResponse = await axios.post(
-          "https://api.cloudinary.com/v1_1/ddbtn5izu/image/upload",
-          formDataCloudinary
-        );
-      }
-
-      const url = modalType === "add"
-        ? "http://localhost:8080/api/categories"
-        : `http://localhost:8080/api/categories/${currentCategory.id}`;
-      const method = modalType === "add" ? "POST" : "PUT";
-
-      const categoryData = {
-        ...currentCategory,
-        ...(imageResponse && {
-          publicId: imageResponse.data.public_id,
-          categoryUrl: imageResponse.data.secure_url,
-        }),
-      };
-
-      const response = await fetch(url, {
-        method: method,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(categoryData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Error ${modalType === "add" ? "adding" : "updating"} category`);
-      }
-
-      fetchCategories();
-      showToastMessage(`Danh mục đã được ${modalType === "add" ? "thêm" : "cập nhật"} thành công!`);
-      handleCloseModal();
-    } catch (error) {
-      console.error("Error saving category", error);
-      showToastMessage("Đã xảy ra lỗi, vui lòng thử lại.", "danger");
-    }
-  };
-
-  const handleDeleteCategory = async (id, publicId) => {
-    if (window.confirm("Bạn có chắc chắn muốn xóa danh mục này?")) {
-      const accessToken = localStorage.getItem("accessToken") || "";
-      try {
-        if (publicId) {
-          await axios.delete(`http://localhost:8080/api/delete-image?publicId=${publicId}`, {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          });
-        }
-
-        const response = await fetch(`http://localhost:8080/api/categories/${id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Error deleting category");
-        }
-
-        fetchCategories();
-        showToastMessage("Danh mục đã được xóa thành công!");
-      } catch (error) {
-        console.error("Error deleting category", error);
-        showToastMessage("Không thể xóa danh mục này.", "danger");
-      }
-    }
-  };
-
   return (
-    <Box sx={{ p: 3, marginTop: '100px', overflowY: 'auto' }}>
-    <div className="container mt-5">
-      <h2 className="mb-5 text-center text-primary">Quản lý danh mục</h2>
-      <Button variant="success" size="lg" className="mb-4" onClick={() => handleOpenModal("add")}>
-        + Thêm danh mục
-      </Button>
+    <Box sx={{ p: 3, marginTop: "100px", overflowY: "auto" }}>
+      <Paper sx={{ boxShadow: 3, p: 3 }}>
+        <Typography variant="h5" align="center" sx={{ mb: 3 }}>
+          Quản lý danh mục
+        </Typography>
 
-      <Table striped bordered hover className="mt-4 text-center">
-        <thead className="table-dark">
-          <tr>
-            <th>#</th>
-            <th>Ảnh</th>
-            <th>Tên danh mục</th>
-            <th>Thao tác</th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((category, index) => (
-            <tr key={category.id}>
-              <td>{index + 1}</td>
-              <td>
-                {category.categoryUrl && (
-                  <Image src={category.categoryUrl} alt="Category" thumbnail width="100" />
-                )}
-              </td>
-              <td className="fw-bold">{category.name}</td>
-              <td>
-                <Button variant="warning" className="me-3" onClick={() => handleOpenModal("edit", category)}>
-                  Sửa
-                </Button>
-                <Button variant="danger" onClick={() => handleDeleteCategory(category.id, category.publicId)}>
-                  Xóa
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+        <Button variant="contained" color="primary" onClick={() => handleOpenDialog()}>
+          + Thêm danh mục
+        </Button>
 
-      <Modal show={showModal} onHide={handleCloseModal} size="lg" centered>
-        <Modal.Header closeButton>
-          <Modal.Title>{modalType === "add" ? "Thêm danh mục mới" : "Chỉnh sửa danh mục"}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-4">
-              <Form.Label>Tên danh mục</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Nhập tên danh mục"
-                value={currentCategory.name}
-                onChange={(e) =>
-                  setCurrentCategory({ ...currentCategory, name: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group className="mb-4">
-              <Form.Label>Ảnh</Form.Label>
-              <Form.Control
-                type="file"
-                onChange={(e) => setImageFile(e.target.files[0])}
-              />
-              {currentCategory.imageUrl && (
-                <Image src={currentCategory.imageUrl} alt="Category" thumbnail className="mt-3" />
-              )}
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
+        <TableContainer component={Paper} sx={{ mt: 3 }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">STT</TableCell>
+                <TableCell align="center">Ảnh</TableCell>
+                <TableCell align="center">Tên danh mục</TableCell>
+                <TableCell align="center">Thao tác</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {categories.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((category, index) => (
+                <TableRow key={category.id}>
+                  <TableCell align="center">{index + 1}</TableCell>
+                  <TableCell align="center">
+                    <Avatar src={category.categoryUrl} alt="Category Image" />
+                  </TableCell>
+                  <TableCell align="center">{category.name}</TableCell>
+                  <TableCell align="center">
+                    <Button onClick={() => handleOpenDialog(category)}>Sửa</Button>
+                    <Button color="error" onClick={() => handleDeleteCategory(category.id)}>
+                      Xóa
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 20]}
+          component="div"
+          count={categories.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={(e, newPage) => setPage(newPage)}
+          onRowsPerPageChange={(e) => setRowsPerPage(Number(e.target.value))}
+        />
+      </Paper>
+
+      {/* Dialog */}
+      <Dialog open={showDialog} onClose={handleCloseDialog}>
+        <DialogTitle>{currentCategory.id ? "Chỉnh sửa danh mục" : "Thêm danh mục mới"}</DialogTitle>
+        <DialogContent>
+          <TextField
+            fullWidth
+            label="Tên danh mục"
+            value={currentCategory.name}
+            onChange={(e) => setCurrentCategory({ ...currentCategory, name: e.target.value })}
+            sx={{ mb: 2 }}
+          />
+          <Button variant="contained" component="label">
+            Chọn ảnh
+            <input type="file" hidden onChange={(e) => setImageFile(e.target.files[0])} />
+          </Button>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="secondary">
             Hủy
           </Button>
-          <Button variant="primary" onClick={handleSaveCategory}>
+          <Button onClick={handleSaveCategory} color="primary">
             Lưu
           </Button>
-        </Modal.Footer>
-      </Modal>
+        </DialogActions>
+      </Dialog>
 
-      <ToastContainer position="top-center" className="p-3">
-        <Toast bg={toastVariant} show={showToast} autohide>
-          <Toast.Body className="text-white">{toastMessage}</Toast.Body>
+      {/* Toast */}
+      <ToastContainer position="top-center">
+        <Toast show={showToast} bg={toastVariant} autohide>
+          <Toast.Body>{toastMessage}</Toast.Body>
         </Toast>
       </ToastContainer>
-    </div>
-    </Box>  
+    </Box>
   );
 };
 

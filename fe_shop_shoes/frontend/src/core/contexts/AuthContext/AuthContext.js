@@ -134,29 +134,21 @@ const AuthProvider = ({ children }) => {
   //   navigate('/login')
   // }
 
-  const logout = async ({ sessionExpired = false }) => {
+  const logout = ({ sessionExpired = false }) => {
     try {
-      // Call your logout API
-      const response = await fetch('http://localhost:8080/api/auth/logout', {
-        method: 'POST', // assuming your API expects a POST request
-        credentials: 'include', // include credentials for cookies/session management if necessary
-      });
+      // Clear all data from localStorage
+      localStorage.clear();
   
-      if (response.ok) {
-        // Dispatch the logout action and display appropriate message
-        dispatch({ type: 'LOGOUT' });
-        sessionExpired
-          ? enqueueSnackbar('Session expired, please login again', { variant: 'warning' })
-          : enqueueSnackbar('See you soon!', { variant: 'success' });
+      // Dispatch the logout action and display appropriate message
+      dispatch({ type: 'LOGOUT' });
+      sessionExpired
+        ? enqueueSnackbar('Session expired, please login again', { variant: 'warning' })
+        : enqueueSnackbar('See you soon!', { variant: 'success' });
   
-        // Navigate to login
-        navigate('/login');
-      } else {
-        // Handle error (e.g., logout API failed)
-        enqueueSnackbar('Logout failed, please try again', { variant: 'error' });
-      }
+      // Navigate to login
+      navigate('/login');
     } catch (error) {
-      // Handle network errors or other unexpected errors
+      // Handle unexpected errors
       enqueueSnackbar('An error occurred during logout', { variant: 'error' });
     }
   };

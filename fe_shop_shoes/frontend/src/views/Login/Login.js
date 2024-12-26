@@ -86,9 +86,17 @@ const Login = () => {
         // Store the access token and user ID in localStorage
         localStorage.setItem('accessToken', data.token);
         localStorage.setItem('userId', data.id);
+        localStorage.setItem('roles', data.roles);
 
-        // Redirect to the home page after successful login
-        navigate('/');
+        // Check user roles
+        const roles = data.roles; // Assuming roles is an array like ["ROLE_ADMIN"]
+        if (roles.includes('ROLE_ADMIN')) {
+          navigate('/admin'); // Redirect to admin page
+        } else if (roles.includes('ROLE_USER')) {
+          navigate('/'); // Redirect to home page
+        } else {
+          throw new Error('Role is not recognized. Please contact support.');
+        }
       } catch (error) {
         console.error('Error:', error);
         // Optionally display error messages to users

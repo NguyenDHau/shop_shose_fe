@@ -62,31 +62,6 @@ const SideMenu = () => {
           <Divider sx={{ width: '100%' }} />
         </Box>
 
-        <Box>
-          <Box sx={{ display: 'flex' }}>
-            <Typography fontSize={14} fontWeight={600}>
-              Shipping Estimates
-            </Typography>
-          </Box>
-
-          <Box sx={{ my: 1, display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-            <FormControl size="small" fullWidth>
-              <Select inputProps={{ 'aria-label': 'Without label' }} value={country} onChange={handleChange}>
-                {selectOptions.map((option) => {
-                  return (
-                    <MenuItem key={option} value={option}>
-                      {option}
-                    </MenuItem>
-                  )
-                })}
-              </Select>
-            </FormControl>
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', my: 1 }}>
-            <TextField fullWidth label="Zip Code" placeholder="3100" name="zipCode" size="small" />
-          </Box>
-        </Box>
-
         <Box
           sx={{
             display: 'flex',
@@ -96,21 +71,7 @@ const SideMenu = () => {
             my: 1,
           }}
         >
-          <Box>
-            <Button
-              fullWidth
-              variant="outlined"
-              color="primary"
-              sx={{
-                p: 1,
-                mb: 1,
-              }}
-            >
-              <Typography fontWeight={600} fontSize={14}>
-                Calculate Shipping
-              </Typography>
-            </Button>
-          </Box>
+          
           <Box>
             <Link to="/checkout" style={{ textDecoration: 'none', color: '#fff' }}>
               <Button fullWidth variant="contained" color="primary" sx={{ height: 40 }}>
