@@ -80,7 +80,7 @@ const Register = () => {
       <Box display="flex" justifyContent="center" flexDirection="column" alignItems="center" sx={{ mt: 1 }}>
         <Logo />
         <Typography variant="subtitle1" align="center" fontWeight="bold">
-          Create Your Account
+          Tạo tài khoản
         </Typography>
       </Box>
       <Divider sx={{ my: 2 }} />
@@ -88,7 +88,7 @@ const Register = () => {
         <TextField
           fullWidth
           name="username"
-          label="Username"
+          label="Tên đăng nhập"
           value={formik.values.username}
           onChange={formik.handleChange}
           error={formik.touched.username && Boolean(formik.errors.username)}
@@ -98,7 +98,7 @@ const Register = () => {
         <TextField
           fullWidth
           name="firstName"
-          label="First Name"
+          label="Họ tên đệm"
           value={formik.values.firstName}
           onChange={formik.handleChange}
           error={formik.touched.firstName && Boolean(formik.errors.firstName)}
@@ -108,7 +108,7 @@ const Register = () => {
         <TextField
           fullWidth
           name="lastName"
-          label="Last Name"
+          label="Tên"
           value={formik.values.lastName}
           onChange={formik.handleChange}
           error={formik.touched.lastName && Boolean(formik.errors.lastName)}
@@ -128,7 +128,7 @@ const Register = () => {
         <TextField
           fullWidth
           name="password"
-          label="Password"
+          label="Mật khẩu"
           type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
@@ -139,7 +139,7 @@ const Register = () => {
         <TextField
           fullWidth
           name="passwordConfirmation"
-          label="Confirm Password"
+          label="Nhập lại mật khảu"
           type="password"
           value={formik.values.passwordConfirmation}
           onChange={formik.handleChange}
@@ -150,7 +150,7 @@ const Register = () => {
         <TextField
           fullWidth
           name="phoneNumber"
-          label="Phone Number"
+          label="Số điện thoaị"
           value={formik.values.phoneNumber}
           onChange={formik.handleChange}
           error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
@@ -160,7 +160,7 @@ const Register = () => {
         <TextField
           fullWidth
           name="address"
-          label="Address"
+          label="Địa chỉ"
           value={formik.values.address}
           onChange={formik.handleChange}
           error={formik.touched.address && Boolean(formik.errors.address)}
@@ -170,10 +170,10 @@ const Register = () => {
 
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Button color="primary" variant="contained" type="submit">
-            Register
+            Đăng ký
           </Button>
           <Link component={RouterLink} to={PageURLs.Login} variant="caption">
-            Already have an account? Login!
+            Bạn đã có tài khoản? Đăng nhập
           </Link>
         </Box>
       </form>

@@ -6,48 +6,6 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { PageURLs } from 'Routes';
 import * as yup from 'yup';
 
-// const Login = () => {
-//   const navigate = useNavigate(); // Initialize useNavigate hook
-
-//   const validationSchema = yup.object({
-//     username: yup.string('Enter your username').required('Username is required'),
-//     password: yup.string('Enter your password').required('Password is required'),
-//   });
-
-//   const formik = useFormik({
-//     initialValues: {
-//       username: '', // Set initial value to an empty string
-//       password: '', // Set initial value to an empty string
-//     },
-//     validationSchema,
-//     onSubmit: async ({ username, password }) => {
-//       try {
-//         const response = await fetch('http://localhost:8080/api/auth/signin', {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json',
-//           },
-//           body: JSON.stringify({ username, password }),
-//         });
-
-//         if (!response.ok) {
-//           throw new Error('Login failed! Please check your credentials.');
-//         }
-
-//         const data = await response.json();
-//         // Store the access token in localStorage or state
-//         localStorage.setItem('accessToken', data.token);
-//         localStorage.setItem('userId', data.id);
-
-//         // Redirect to the register page after successful login
-//         navigate('/');
-//       } catch (error) {
-//         console.error('Error:', error);
-//         // Optionally handle errors and display messages to users
-//       }
-//     },
-//   });
-
 const Login = () => {
   const navigate = useNavigate(); // Initialize useNavigate hook
 
@@ -110,7 +68,7 @@ const Login = () => {
       <Box display="flex" justifyContent="center" flexDirection="column" alignItems="center" sx={{ mt: 1 }}>
         <Logo />
         <Typography variant="subtitle1" align="center" fontWeight="bold">
-          Welcome To Nô Shoes
+          Chào mừng đến với Nô Shoes!
         </Typography>
       </Box>
       <Divider sx={{ my: 2 }} />
@@ -118,7 +76,7 @@ const Login = () => {
         <TextField
           fullWidth
           id="username"
-          label="Username"
+          label="Tên đăng nhập"
           name="username"
           value={formik.values.username}
           onChange={formik.handleChange}
@@ -131,7 +89,7 @@ const Login = () => {
           fullWidth
           id="password"
           name="password"
-          label="Password"
+          label="Mật khẩu"
           type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
@@ -142,10 +100,10 @@ const Login = () => {
         />
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Button color="primary" variant="contained" type="submit">
-            Login
+            Đăng nhập
           </Button>
           <Link component={RouterLink} to={PageURLs.Register} variant="caption">
-            No account? Register!
+            Không có tài khoản? Đăng ký!
           </Link>
         </Box>
       </form>
